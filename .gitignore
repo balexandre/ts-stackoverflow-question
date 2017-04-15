@@ -1,0 +1,4 @@
+dist/*.js
+dist/*.map
+libs/*.js
+node_modules/
