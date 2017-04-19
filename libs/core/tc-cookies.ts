@@ -9,7 +9,8 @@ export default class CookiesCore {
      * @returns string
      */
     get_cookie(name: string): string {
-        return JsCookie.get(name);
+        var c: string = JsCookie.get(name);
+        return c === undefined ? "" : c;
     }
 
     /**

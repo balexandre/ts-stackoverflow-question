@@ -1,11 +1,14 @@
 
 import CookiesCore from "./tc-cookies";
+var jQuery: JQueryStatic = require("jquery");
 
 export default class TcCore {
     _cookieCore: CookiesCore;
+    $: JQueryStatic;
 
     constructor() {
         this._cookieCore = new CookiesCore();
+        this.$ = jQuery;
     }
     public version: string = "v.1.0.0";
 
