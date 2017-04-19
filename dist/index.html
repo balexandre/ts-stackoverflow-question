@@ -1,26 +1,42 @@
 <html>
-    <head></head>
-    <body>
-        <h1>TS Testing...</h1>
-        <hr />
-        <input type="button" value="Increment (0)" onclick="increment_cookie()" />
 
-        <script src="client.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            var tc = new tcClient.default(),
-                COOKIE_NAME = "Biscuit";
+<head></head>
 
-            console.log("client side loaded with tcCore " + tc.version);            
-            console.log("client side loaded with jQuery " + tc.$.fn.jquery);
+<body>
+    <h1>TS Testing...</h1>
+    <hr />
+    <input type="button" value="Increment (0)" onclick="increment_cookie()" />
 
-            function increment_cookie() {
-                var c = tc.get_cookie(COOKIE_NAME),
-                    cookieValue = 0;
-                if(typeof(c) === "number")
-                    cookieValue = parseInt(c);
-                tc.add_cookie(COOKIE_NAME, ++c);
-                tc.$("input").val("Increment (" + c + ")");
+    <script src="client.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var tc = new tcClient.default(),
+            COOKIE_NAME = "Biscuit";
+
+        console.log("client side loaded with tcCore " + tc.version);
+        console.log("client side loaded with jQuery " + tc.$.fn.jquery);
+
+        function increment_cookie() {
+            var c = tc.get_cookie(COOKIE_NAME),
+                cookieValue = TryParseInt(c, 0);
+
+            tc.add_cookie(COOKIE_NAME, ++cookieValue);
+            tc.$("input").val("Increment (" + cookieValue + ")");
+        }
+
+        // http://pietschsoft.com/post/2008/01/14/JavaScript-intTryParse-Equivalent
+        function TryParseInt(str, defaultValue) {
+            var retValue = defaultValue;
+            if (str !== null) {
+                if (str.length > 0) {
+                    if (!isNaN(str)) {
+                        retValue = parseInt(str);
+                    }
+                }
             }
-        </script>
-    </body>
+            return retValue;
+        }
+
+    </script>
+</body>
+
 </html>
