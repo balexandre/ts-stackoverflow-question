@@ -15,27 +15,16 @@
         console.log("client side loaded with tcCore " + tc.version);
         console.log("client side loaded with jQuery " + tc.$.fn.jquery);
 
+        var c = tc._cookiesCore.get_cookie(COOKIE_NAME);
+        console.log(c, "cookies_core access");
+
         function increment_cookie() {
-            var c = tc.get_cookie(COOKIE_NAME),
-                cookieValue = TryParseInt(c, 0);
+            var c           = tc.get_cookie(COOKIE_NAME),
+                cookieValue = tc._utilities.tryParseInt(c, 0);
 
             tc.add_cookie(COOKIE_NAME, ++cookieValue);
             tc.$("input").val("Increment (" + cookieValue + ")");
         }
-
-        // http://pietschsoft.com/post/2008/01/14/JavaScript-intTryParse-Equivalent
-        function TryParseInt(str, defaultValue) {
-            var retValue = defaultValue;
-            if (str !== null) {
-                if (str.length > 0) {
-                    if (!isNaN(str)) {
-                        retValue = parseInt(str);
-                    }
-                }
-            }
-            return retValue;
-        }
-
     </script>
 </body>
 

@@ -6,7 +6,7 @@ export default class CookiesCore {
     /**
      * Gets a cookie from the client browser
      * @param  {string} name Cookie name
-     * @returns string
+     * @returns string The cookie value as a string, or empty string if cookie does not exist
      */
     get_cookie(name: string): string {
         var c: string = JsCookie.get(name);

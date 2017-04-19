@@ -1,27 +1,30 @@
-
 import CookiesCore from "./tc-cookies";
+import UtilitiesCore from "./tc-utilities";
+
 var jQuery: JQueryStatic = require("jquery");
 
 export default class TcCore {
-    _cookieCore: CookiesCore;
-    $: JQueryStatic;
+    private _cookiesCore: CookiesCore;
+    public _utilities: UtilitiesCore;
+    public $: JQueryStatic;
 
     constructor() {
-        this._cookieCore = new CookiesCore();
+        this._cookiesCore = new CookiesCore();
+        this._utilities = new UtilitiesCore();
         this.$ = jQuery;
     }
     public version: string = "v.1.0.0";
 
     // #################################################################################################
-    // cookies feature
+    // cookies feature wrapper
     // import CookiesCore from "./sc-cookies";
     add_cookie(name: string, value: string, expires?: number): void {
-        this._cookieCore.set_cookie(name, value, expires);
+        this._cookiesCore.set_cookie(name, value, expires);
     }
     get_cookie(name: string): string {
-        return this._cookieCore.get_cookie(name);
+        return this._cookiesCore.get_cookie(name);
     }
     del_cookie(name: string): void {
-        this._cookieCore.del_cookie(name);
+        this._cookiesCore.del_cookie(name);
     }
 }
